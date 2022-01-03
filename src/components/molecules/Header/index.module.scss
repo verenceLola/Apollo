@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    min-height: 2rem;
+    border-bottom: 5px solid black;
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: auto;
+    box-shadow: 0px 2px 5px gray;
+    background-color: white;
+
+    header {
+        font-size: 1.5rem;
+        white-space: nowrap;
+        font-weight: 600;
+    }
+}
+
+.content {
+    margin-top: 80px;
+}

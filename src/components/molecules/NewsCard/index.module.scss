@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin: 0.3rem;
+    box-shadow: 0px 2px 5px black;
+    padding: 10px;
+    border-radius: 5px;
+    // position: relative;
+    min-width: fit-content;
+    // max-width: 1000px; // TODO: fix responsive
+
+    .rank {
+        min-width: 20px;
+        min-height: 20px;
+        padding: 0.2rem;
+        margin-right: 5px;
+
+        span::after {
+            content: ".";
+        }
+    }
+
+    &:hover {
+        box-shadow: 0px 4px 10px black;
+        cursor: pointer;
+    }
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.2 rem;
+
+    > span {
+        text-align: start;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .details {
+        display: flex;
+        gap: 5px;
+
+        span {
+            color: gray;
+            font-size: small;
+            padding-right: 5px;
+            font-style: italic;
+            text-transform: lowercase;
+            white-space: nowrap;
+        }
+
+        span:not(:last-child) {
+            border-right: 1px solid black;
+        }
+    }
+}
