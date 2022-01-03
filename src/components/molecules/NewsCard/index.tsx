@@ -1,48 +1,52 @@
+import { useEffect, useMemo, useState } from "react";
 import moment from "moment";
-import { useMemo } from "react";
+
+import { fetchStory } from "../../../api";
 import { IStory } from "../../../entities";
 import { StringFormmater } from "../../../utils";
 
 import styles from "./index.module.scss";
 
 interface IProps {
-    story: IStory;
+    storyId: number;
     index: number;
 }
 
-export const NewsCard = ({
-    story: {
-        descendants: numberOfComments,
-        score: points,
-        time: postedAt,
-        by: postedBy,
-        id,
-        title,
-        url,
-    },
-    index,
-}: IProps) => {
+export const NewsCard = ({ storyId, index }: IProps) => {
+    const [story, setStory] = useState<IStory>();
+
+    useEffect(() => {
+        fetchStory(storyId).then((data) => setStory(data));
+    }, [storyId]);
+
     const formattedPostedAt = useMemo(
-        () => moment(moment.unix(postedAt)).fromNow(),
-        [postedAt]
+        () => story?.time && moment(moment.unix(story?.time)).fromNow(),
+        [story?.time]
     );
 
-    return (
+    return story ? (
         <div className={styles.container}>
             <div className={styles.rank}>
                 <span>{index}</span>
             </div>
             <div className={styles["details-container"]}>
-                <span>{title}</span>
+                <span>{story.title}</span>
                 <div className={styles.details}>
-                    <span>{StringFormmater.Pluralize(points, "point")}</span>
-                    <span>{`by ${postedBy}`}</span>
+                    <span>
+                        {StringFormmater.Pluralize(story.score, "point")}
+                    </span>
+                    <span>{`by ${story.by}`}</span>
                     <span>{formattedPostedAt}</span>
                     <span>
-                        {StringFormmater.Pluralize(numberOfComments, "comment")}
+                        {StringFormmater.Pluralize(
+                            story.descendants,
+                            "comment"
+                        )}
                     </span>
                 </div>
             </div>
         </div>
+    ) : (
+        <></>
     );
 };

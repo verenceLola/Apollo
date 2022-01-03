@@ -2,19 +2,28 @@ import { useEffect, useState } from "react";
 
 import { News } from "./components/organisms";
 import { fetchTopStories } from "./api";
-import { IStory } from "./entities";
+import { withHeader } from "./components/molecules";
 
 import "./App.css";
 
-const App = () => {
-    const [stories, setStories] = useState<IStory[]>([]);
+interface IProps {
+    limit: number;
+}
+
+const App = withHeader(({ limit }: IProps) => {
+    const [stories, setStories] = useState<number[]>([]);
+
     useEffect(() => {
         fetchTopStories().then((data) => {
             setStories(data);
         });
     }, []);
-    console.log({ stories });
-    return <div className="App">{<News stories={stories} />}</div>;
-};
+
+    useEffect(() => {});
+
+    return (
+        <div className="App">{<News stories={stories.slice(0, limit)} />}</div>
+    );
+});
 
 export default App;

@@ -1,18 +1,17 @@
-import { IStory } from "../../../entities";
-import { NewsCard, withHeader } from "../../molecules";
+import { NewsCard } from "../../molecules";
 
 import styles from "./index.module.scss";
 
 interface IProps {
-    stories: IStory[];
+    stories: number[];
 }
 
-export const News = withHeader(({ stories }: IProps) => {
+export const News = ({ stories }: IProps) => {
     return (
         <div className={styles.container}>
             {stories.map((story, index) => (
-                <NewsCard key={story.id} story={story} index={index + 1} />
+                <NewsCard key={story} storyId={story} index={index + 1} />
             ))}
         </div>
     );
-});
+};

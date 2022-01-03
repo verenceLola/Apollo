@@ -3,7 +3,7 @@
     min-height: 2rem;
     border-bottom: 5px solid black;
     padding: 1rem;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     position: fixed;
@@ -22,4 +22,14 @@
 
 .content {
     margin-top: 80px;
+}
+
+.number-of-stories-container {
+    margin-right: 2rem;
+    gap: 5px;
+    display: flex;
+
+    select {
+        outline: none;
+    }
 }
