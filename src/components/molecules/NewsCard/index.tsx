@@ -24,8 +24,12 @@ export const NewsCard = ({ storyId, index }: IProps) => {
         [story?.time]
     );
 
+    const onClick = () => {
+        story?.url && window.open(story.url, "_blank");
+    };
+
     return story ? (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={onClick}>
             <div className={styles.rank}>
                 <span>{index}</span>
             </div>

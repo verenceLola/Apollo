@@ -1,4 +1,4 @@
-import { NewsCard } from "../../molecules";
+import { NewsCard } from "../../";
 
 import styles from "./index.module.scss";
 
