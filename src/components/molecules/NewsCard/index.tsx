@@ -1,18 +1,35 @@
+import { IStory } from "../../../entities";
+
 import styles from "./index.module.scss";
 
-export const NewsCard = () => {
+interface IProps {
+    story: IStory;
+    index: number;
+}
+
+export const NewsCard = ({
+    story: {
+        descendants: numberOfComments,
+        score: points,
+        time: postedAt,
+        by: postedBy,
+        title,
+        url,
+    },
+    index,
+}: IProps) => {
     return (
         <div className={styles.container}>
             <div className={styles.rank}>
-                <span>1</span>
+                <span>{index}</span>
             </div>
             <div className={styles["details-container"]}>
-                <span>Story Title</span>
+                <span>{title}</span>
                 <div className={styles.details}>
-                    <span>128 Points</span>
-                    <span>By verence</span>
-                    <span>2 hours ago</span>
-                    <span>2 comments</span>
+                    <span>{`${points} points`}</span>
+                    <span>{`by ${postedBy}`}</span>
+                    <span>{postedAt}</span>
+                    <span>{`${numberOfComments} comments`}</span>
                 </div>
             </div>
         </div>
