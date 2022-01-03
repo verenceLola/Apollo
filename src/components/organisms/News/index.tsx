@@ -11,7 +11,7 @@ export const News = withHeader(({ stories }: IProps) => {
     return (
         <div className={styles.container}>
             {stories.map((story, index) => (
-                <NewsCard key={index} story={story} index={index + 1} />
+                <NewsCard key={story.id} story={story} index={index + 1} />
             ))}
         </div>
     );

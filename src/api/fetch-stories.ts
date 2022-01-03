@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from "axios";
-import { IStory } from "../entities";
+import axios from "axios";
 
+import { IStory } from "../entities";
 import { axiosInstance } from "./axiosInstance";
 
 export const fetchTopStories = async (limit = 20) => {

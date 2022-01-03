@@ -1,4 +1,7 @@
+import moment from "moment";
+import { useMemo } from "react";
 import { IStory } from "../../../entities";
+import { StringFormmater } from "../../../utils";
 
 import styles from "./index.module.scss";
 
@@ -13,11 +16,17 @@ export const NewsCard = ({
         score: points,
         time: postedAt,
         by: postedBy,
+        id,
         title,
         url,
     },
     index,
 }: IProps) => {
+    const formattedPostedAt = useMemo(
+        () => moment(moment.unix(postedAt)).fromNow(),
+        [postedAt]
+    );
+
     return (
         <div className={styles.container}>
             <div className={styles.rank}>
@@ -26,10 +35,12 @@ export const NewsCard = ({
             <div className={styles["details-container"]}>
                 <span>{title}</span>
                 <div className={styles.details}>
-                    <span>{`${points} points`}</span>
+                    <span>{StringFormmater.Pluralize(points, "point")}</span>
                     <span>{`by ${postedBy}`}</span>
-                    <span>{postedAt}</span>
-                    <span>{`${numberOfComments} comments`}</span>
+                    <span>{formattedPostedAt}</span>
+                    <span>
+                        {StringFormmater.Pluralize(numberOfComments, "comment")}
+                    </span>
                 </div>
             </div>
         </div>

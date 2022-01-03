@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 
 import { News } from "./components/organisms";
-
-import "./App.css";
 import { fetchTopStories } from "./api";
 import { IStory } from "./entities";
 
-const stories = [
-    0, 1, 2, 3, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2,
-];
+import "./App.css";
 
 const App = () => {
     const [stories, setStories] = useState<IStory[]>([]);
